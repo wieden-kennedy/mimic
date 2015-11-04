@@ -101,16 +101,18 @@
 
       (core/stream :test ["nine"]) => "one nine four")))
 
-(midje/fact-group :integration
-  (fact "it works"
-    (def store (mimic.db.backends.memory/init))
-    (db/flush! store) ;; we need to flush or the test suite might interfere
-    (defmacro mimic* [& body] `(core/with-store store ~@body))
+;; set mimic macro
+(def store (mimic.db.backends.memory/init))
+(db/flush! store) ;; we need to flush or the test suite might interfere
+(defmacro mimic* [& body] `(core/with-store store ~@body))
+
+(facts "about integration"
+  (fact "example works"
     (mimic* (core/with-session [:test]
               (core/add! ["this" "is" "a" "test"])))
     (mimic* (core/fetch :test)) => "this"
     (mimic* (core/stream :test)) => "this is a test"
 
-    (mimic* (core/with-session [:another-integration-test]
+    (mimic* (core/with-session [:another]
               (core/add! ["one" "more" "test"]))
-            (core/stream :another-integration-test)) => "one more test"))
+            (core/stream :another)) => "one more test"))
