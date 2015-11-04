@@ -1,4 +1,4 @@
-# Mimic
+# Mimic [![Travis CI](https://api.travis-ci.org/wieden-kennedy/mimic.svg)](https://travis-ci.org/wieden-kennedy/mimic)
 A tool for generating simple predictive models.
 
 ## Installation
