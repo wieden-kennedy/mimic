@@ -5,7 +5,7 @@ A tool for generating simple predictive models.
 
 Add the following dependency to your `project.clj` file:
 
-`[mimic "0.1.0"]`
+[![Clojars Project](http://clojars.org/mimic/latest-version.svg)](http://clojars.org/mimic)
 
 ## Documentation
 
