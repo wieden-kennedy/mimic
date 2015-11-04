@@ -5,7 +5,6 @@
             :url "http://www.apache.org/licenses/LICENSE-2.0.html"}
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [com.taoensso/carmine "2.12.0"]]
-  :main ^:skip-aot mimic.core
   :min-lein-version "2.0.0"
   :target-path "target/%s"
   :codox {:output-path "doc"}
