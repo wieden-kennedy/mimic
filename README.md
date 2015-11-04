@@ -74,8 +74,8 @@ You can also get the next bit of info based on prior state:
 (require '[mimic.core :as mimic :refer [with-session add! stream]])
 (with-session [:example]
   (add! ["1" "2" "3" "4"]))
-(get :example) ;; => "1"
-(get :example "3") ;; => "4"
+(fetch :example) ;; => "1"
+(fetch :example "3") ;; => "4"
 ```
 
 ## License
