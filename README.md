@@ -26,7 +26,7 @@ A more complicated example using Redis might look like this:
 ```clojure
 (require '[mimic.core :as mimic :refer [with-session add! stream]])
 ;; see Carmine for the Redis backend options
-(def store (redis/init {:pool {} :spec {:uri 'redis://localhost:6379'}}))
+(def store (redis/init {:pool {} :spec {:uri "redis://localhost:6379"}}))
 (defmacro mimic* [& body] `(mimic/with-store store ~@body))
 (mimic* (with-session [:example]
           (add! ["using" "a" "redis" "store"]))
