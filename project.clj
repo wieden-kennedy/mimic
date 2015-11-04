@@ -1,5 +1,5 @@
 (defproject mimic "0.1.0"
-  :description "Markov system for predicting behavior."
+  :description "A tool for generating simple predictive models."
   :url "http://github.com/wieden-kennedy/mimic"
   :license {:name "Apache License"
             :url "http://www.apache.org/licenses/LICENSE-2.0.html"}
