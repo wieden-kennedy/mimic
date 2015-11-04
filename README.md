@@ -9,7 +9,7 @@ Add the following dependency to your `project.clj` file:
 
 ## Documentation
 
-* [API Docs](http://wieden-kennedy.github.com/mimic)
+* [API Docs](http://wieden-kennedy.github.io/mimic)
 
 ## Usage
 
