@@ -10,5 +10,6 @@
   :codox {:output-path "doc"}
   :uberjar-name "mimic-standalone.jar"
   :profiles {:uberjar {:aot :all}
-             :dev {:plugins [[lein-codox "0.9.0"]]
+             :dev {:plugins [[lein-midje "3.1.3"]
+                             [lein-codox "0.9.0"]]
                    :dependencies [[midje "1.8.1"]]}})
