@@ -8,6 +8,7 @@
   :main ^:skip-aot mimic.core
   :min-lein-version "2.0.0"
   :target-path "target/%s"
+  :codox {:output-path "doc"}
   :uberjar-name "mimic-standalone.jar"
   :profiles {:uberjar {:aot :all}
              :dev {:plugins [[lein-codox "0.9.0"]]
