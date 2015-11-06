@@ -1,4 +1,4 @@
-(defproject mimic "0.1.0"
+(defproject mimic "0.1.1"
   :description "A tool for generating simple predictive models."
   :url "http://github.com/wieden-kennedy/mimic"
   :license {:name "Apache License"
