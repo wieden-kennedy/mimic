@@ -77,7 +77,8 @@
   (validate-session session)
   (let [{:keys [model-keys data]} (db/fetch store session)]
     (doseq [target-key model-keys]
-      (let [old-mark (db/fetch store target-key {})
+      (let [target-key (name target-key)
+            old-mark (db/fetch store target-key {})
             new-mark (markov/build data old-mark)]
         (db/set! store target-key new-mark)))
     (db/remove! store session)))
@@ -140,9 +141,10 @@
   ([model start]
    {:pre [(some? model)
           (some? start)]}
-   (validate-model model)
-   (let [model (db/fetch store model)]
-     (markov/fetch model start))))
+   (let [m (name model)]
+     (validate-model m)
+     (let [model (db/fetch store m)]
+       (markov/fetch model start)))))
 
 (defn stream
   "Builds a generated session stream. Allows for skewing results
@@ -157,6 +159,7 @@
   ([model] (stream model nil))
   ([model overrides]
    {:pre [(some? model)]}
-   (validate-model model)
-   (let [model (db/fetch store model)]
-     (markov/stream model overrides))))
+   (let [m (name model)]
+    (validate-model m)
+    (let [model (db/fetch store m)]
+      (markov/stream model overrides)))))
