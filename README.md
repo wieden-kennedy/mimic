@@ -71,7 +71,7 @@ So does Mimic only work on text? Yes and no. You can add any state that's serial
 You can also get the next bit of info based on prior state:
 
 ```clojure
-(require '[mimic.core :as mimic :refer [with-session add! stream]])
+(require '[mimic.core :as mimic :refer [with-session add! stream fetch]])
 (with-session [:example]
   (add! ["1" "2" "3" "4"]))
 (fetch :example) ;; => "1"
