@@ -33,7 +33,7 @@ A more complicated example using Redis might look like this:
         (stream :example)) ;; => "using a redis store"
 ```
 
-Wait, but this is just returning what we've entered. Yes, the "predictive" bits
+Wait, but isn't this just returning what we've entered? Yesf the "predictive" bits
 are based on a Markov chain and require substantial input. So let's build out an
 even more complicated example:
 
