@@ -78,7 +78,7 @@
   (let [{:keys [model-keys data]} (db/fetch store session)]
     (doseq [target-key model-keys]
       (let [target-key (name target-key)
-            old-mark (db/fetch store target-key {})
+            old-mark (db/fetch store target-key nil)
             new-mark (markov/build data old-mark)]
         (db/set! store target-key new-mark)))
     (db/remove! store session)))
@@ -137,7 +137,7 @@
   `start` _Optional_
   : the starting point to match state against."
   {:doc/format :markdown}
-  ([model] (fetch model :start))
+  ([model] (fetch model markov/model-start))
   ([model start]
    {:pre [(some? model)
           (some? start)]}

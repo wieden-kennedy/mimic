@@ -7,8 +7,8 @@
     (core/build ["test"]) => #(instance? clojure.lang.PersistentArrayMap %))
 
   (fact "contains marker nodes"
-    (core/build ["test"]) => (midje/contains {:start {"test" 1}})
-    (core/build ["test"]) => (midje/contains {"test" {:end 1}})))
+    (core/build ["test"]) => (midje/contains {:dictionary not-empty})
+    (core/build ["test"]) => (midje/contains {:model not-empty})))
 
 (midje/against-background [(midje/around :facts
                                          (let [data-s "this is a test"
@@ -25,7 +25,7 @@
       (core/stream model) => data-s)
 
     (fact "can skew a stream towards overrides"
-      (let [start-model (loop [cnt 0 m {}]
+      (let [start-model (loop [cnt 0 m nil]
                           (if (= 1000 cnt)
                             m
                             (recur (inc cnt)
