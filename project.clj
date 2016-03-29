@@ -12,4 +12,6 @@
   :profiles {:uberjar {:aot :all}
              :dev {:plugins [[lein-midje "3.1.3"]
                              [lein-codox "0.9.0"]]
-                   :dependencies [[midje "1.8.1"]]}})
+                   :dependencies [[midje "1.8.1"]
+                                  [criterium "0.4.4"]]
+                   :source-paths ["src" "benchmark"]}})
