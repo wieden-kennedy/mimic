@@ -26,7 +26,7 @@ A more complicated example using Redis might look like this:
 ```clojure
 (require '[mimic.core :as mimic :refer [with-session add! stream]])
 ;; see Carmine for the Redis backend options
-(def store (redis/init {:pool {} :spec {:uri "redis://localhost:6379"}}))
+(def store (mimic.db.backends.redis/init {:pool {} :spec {:uri "redis://localhost:6379"}}))
 (defmacro mimic* [& body] `(mimic/with-store store ~@body))
 (mimic* (with-session [:example]
           (add! ["using" "a" "redis" "store"]))
@@ -71,7 +71,7 @@ So does Mimic only work on text? Yes and no. You can add any state that's serial
 You can also get the next bit of info based on prior state:
 
 ```clojure
-(require '[mimic.core :as mimic :refer [with-session add! stream]])
+(require '[mimic.core :as mimic :refer [with-session add! stream fetch]])
 (with-session [:example]
   (add! ["1" "2" "3" "4"]))
 (fetch :example) ;; => "1"
