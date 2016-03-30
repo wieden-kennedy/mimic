@@ -36,7 +36,7 @@ A more complicated example using Redis might look like this:
 Or using DynamoDB:
 ```clojure
 (require '[mimic.core :as mimic :refer [with-session add! stream]])
-;; see Faraday for the Redis backend options
+;; see Faraday for the DynamoDB backend options
 (def store (mimic.db.backends.dynamodb/init {
   ;;; For DDB Local just use some random strings here, otherwise include your
   ;;; production IAM keys:
