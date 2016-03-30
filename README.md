@@ -33,6 +33,27 @@ A more complicated example using Redis might look like this:
         (stream :example)) ;; => "using a redis store"
 ```
 
+Or using DynamoDB:
+```clojure
+(require '[mimic.core :as mimic :refer [with-session add! stream]])
+;; see Faraday for the Redis backend options
+(def store (mimic.db.backends.dynamodb/init {
+  ;;; For DDB Local just use some random strings here, otherwise include your
+  ;;; production IAM keys:
+  :access-key "<AWS_DYNAMODB_ACCESS_KEY>"
+  :secret-key "<AWS_DYNAMODB_SECRET_KEY>"
+
+  ;;; You may optionally override the default endpoint if you'd like to use DDB
+  ;;; Local or a different AWS Region (Ref. http://goo.gl/YmV80o), etc.:
+  ;; :endpoint "http://localhost:8000"                   ; For DDB Local
+  ;; :endpoint "http://dynamodb.eu-west-1.amazonaws.com" ; For EU West 1 AWS region
+  }))
+(defmacro mimic* [& body] `(mimic/with-store store ~@body))
+(mimic* (with-session [:example]
+          (add! ["using" "a" "dynamodb" "store"]))
+        (stream :example)) ;; => "using a dynamodb store"
+```
+
 Wait, but isn't this just returning what we've entered? Yesf the "predictive" bits
 are based on a Markov chain and require substantial input. So let's build out an
 even more complicated example:
