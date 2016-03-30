@@ -79,5 +79,5 @@ You can also get the next bit of info based on prior state:
 ```
 
 ## License
-Mimic is copyright © 2015 W+K Lodge. It"s free software and may be distributed
+Mimic is copyright © 2016 W+K Lodge. It's free software and may be distributed
 under the [Apache license](http://www.apache.org/licenses/LICENSE-2.0).
