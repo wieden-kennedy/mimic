@@ -1,6 +1,7 @@
 (ns mimic.t-core
   (:require [mimic.core :as core]
             [mimic.db.core :as db]
+            [mimic.markov :as markov]
             [midje.sweet :as midje :refer [fact facts]]))
 
 (midje/against-background [(midje/before :facts (db/flush! core/store))]
@@ -14,7 +15,7 @@
     (fact "it generates a unique session id"
       (core/start [:test]) =not=> (core/start [:test]))
 
-    (facts "about session shorthand"
+    (fact "about session shorthand"
       (core/with-session [:test]
         (core/add! ["this"])
         (core/add! ["is" "a"])
@@ -77,7 +78,7 @@
       (core/fetch :test nil) => (midje/throws AssertionError)
       (core/fetch nil "test") => (midje/throws AssertionError)
       (core/fetch :test (first data)) => (second data)
-      (core/fetch :test (last data)) => :end)
+      (core/fetch :test (last data)) => markov/model-end)
 
     (fact "gets a session stream"
       (core/add! session data)

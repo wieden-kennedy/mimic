@@ -25,7 +25,7 @@
 ;; generate 10000 sentences
 (def markov-input (repeatedly 10000 #(rand-nth split-sentences)))
 (defn build-markov []
-  (loop [mark {}
+  (loop [mark nil
          sentence-index 0]
     (let [split-sentence (nth markov-input sentence-index)
           n-mark (markov/build split-sentence mark)]
