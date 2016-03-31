@@ -2,7 +2,7 @@
   (:require [mimic.db.core :refer :all]
             [taoensso.faraday :as far]))
 
-(def ^{:private true}table :mimic)
+(def ^{:private true} table :mimic)
 
 (defn- thaw
   [data]
