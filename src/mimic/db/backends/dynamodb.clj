@@ -4,6 +4,14 @@
 
 (def ^{:private true}table :mimic)
 
+(defn- thaw
+  [data]
+  (if data (:data data)))
+
+(defn freeze
+  [data]
+  {:data (far/freeze data)})
+
 (defn- assoc-id [target map]
   (assoc map :id (str target)))
 
@@ -22,11 +30,11 @@
     (fetch this target nil))
 
   (fetch [this target else]
-    (or (far/get-item connection table {:id (str target)})
+    (or (thaw (far/get-item connection table {:id (str target)}))
         else))
 
   (set! [this target input]
-    (far/put-item connection table (assoc-id target input))
+    (far/put-item connection table (assoc-id target (freeze input)))
     input)
 
   (remove! [this target]
