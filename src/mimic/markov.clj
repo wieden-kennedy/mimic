@@ -144,11 +144,11 @@
   ([model] (stream model []))
   ([model overrides]
    (loop [start model-start
-          acc []]
+          accumulator ""]
      (let [item (fetch model start overrides)]
        (if (= item (str model-end))
-         (clojure.string/join " " acc)
-         (recur item (concat acc [item])))))))
+         accumulator
+         (recur item (str accumulator " " item)))))))
 
 
 (defn build
@@ -164,6 +164,6 @@
    (build training-data base-model))
   ([training-data starting-model]
    (let [m (or starting-model base-model)]
-         (->> (concat [model-start] training-data [model-end])
-              (modify-dictionary (:dictionary m))
-              (create-new-model m)))))
+     (->> (concat [model-start] training-data [model-end])
+          (modify-dictionary (:dictionary m))
+          (create-new-model m)))))
