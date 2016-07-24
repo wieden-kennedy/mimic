@@ -130,6 +130,13 @@
                 (rand-weighted all))]
      (nth (:dictionary model) index))))
 
+(defn- string-append
+  "Appends a string to another"
+  [old new]
+  (if (clojure.string/blank? old)
+    new
+    (str old " " new)))
+
 (defn stream
   "Fetches an entire stream of states from a given model.
   Uses prior session data to determine the length of the
@@ -148,7 +155,7 @@
      (let [item (fetch model start overrides)]
        (if (= item (str model-end))
          accumulator
-         (recur item (str accumulator " " item)))))))
+         (recur item (string-append accumulator item)))))))
 
 
 (defn build
